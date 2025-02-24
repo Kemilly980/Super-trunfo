@@ -1,0 +1,74 @@
+# Super Trunfo - Jogo de Cartas 
+
+Este é um jogo simples baseado no clássico Super Trunfo, desenvolvido em Python.
+
+## 📌 Como funciona? 
+- Cada jogador recebe uma carta com três atributos: **Força, Velocidade e Inteligência**.
+- O jogador escolhe um tributo para competir.
+- O jogador com o maior valor no atributo escolhido vence a rodada.
+- Em caso de empate, ninguém vence.
+
+## 🚀 Como executar o jogo
+1. Certifique-se de ter o Python instalado na sua máquina.
+2. Baixe ou clone este repositório.
+3. No terminal, navegue até a pasta do projeto e execute:
+   ```sh
+   python super_trunfo.py
+   ```
+
+## 📜 Código
+```python
+import random
+
+class Carta:
+    def __init__(self, nome, forca, velocidade, inteligencia):
+        self.nome = nome
+        self.atributos = {
+            "Força": forca,
+            "Velocidade": velocidade,
+            "Inteligência": inteligencia
+        }
+
+def __str__(self):
+        return f"{self.nome} - Força: {self.atributos['Força']}, Velocidade: {self.atributos['Velocidade']}, Inteligência: {self.atributos['Inteligência']}"
+
+class JogoSuperTrunfo:
+    def __init__(self):
+        self.baralho = [
+            Carta("Dragão", 90, 60, 80),
+            Carta("Cavaleiro", 70, 80, 60),
+            Carta("Mago", 50, 40, 100),
+            Carta("Gigante", 100, 30, 50)
+        ]
+        random.shuffle(self.baralho)
+    
+    def jogar(self):
+        carta1 = self.baralho.pop()
+        carta2 = self.baralho.pop()
+        
+        print("Carta do Jogador 1:")
+        print(carta1)
+        
+        print("\nEscolha um atributo para competir (Força, Velocidade, Inteligência): ")
+        atributo = input().capitalize()
+        
+        if atributo in carta1.atributos:
+            print("\nCarta do Jogador 2:")
+            print(carta2)
+            
+            valor1 = carta1.atributos[atributo]
+            valor2 = carta2.atributos[atributo]
+            
+            if valor1 > valor2:
+                print("\nJogador 1 venceu!")
+            elif valor1 < valor2:
+                print("\nJogador 2 venceu!")
+            else:
+                print("\nEmpate!")
+        else:
+            print("\nAtributo inválido!")
+
+if __name__ == "__main__":
+    jogo = JogoSuperTrunfo()
+    jogo.jogar()
+```

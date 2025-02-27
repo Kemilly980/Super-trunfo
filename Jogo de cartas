@@ -1,17 +1,24 @@
 # Super Trunfo - Jogo de Cartas 
 
-Este é um jogo simples baseado no clássico Super Trunfo, desenvolvido em Python.
+Este é um jogo baseado no clássico Super Trunfo, desenvolvido em Python.
 
 ## 📌 Como funciona? 
 - Cada jogador recebe uma carta com três atributos: **Força, Velocidade e Inteligência**.
 - O jogador escolhe um tributo para competir.
 - O jogador com o maior valor no atributo escolhido vence a rodada.
 - Em caso de empate, ninguém vence.
+- O jogo continua até que todas as cartas sejam jogadas.
 
 ## 🚀 Como executar o jogo
 1. Certifique-se de ter o Python instalado na sua máquina.
-2. Baixe ou clone este repositório.
-3. No terminal, navegue até a pasta do projeto e execute:
+2. Opcionalmente, crie um ambiente virtual com:
+ ```sh
+ python -m venv venv 
+ source venv/bin/activate # No Windows:
+ venv\Scripts\activate 
+ ```
+3. Baixe ou clone este repositório.
+4. No terminal, navegue até a pasta do projeto e execute:
    ```sh
    python super_trunfo.py
    ```

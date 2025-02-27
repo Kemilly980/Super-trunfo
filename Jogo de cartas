@@ -4,7 +4,7 @@ Este é um jogo baseado no clássico Super Trunfo, desenvolvido em Python.
 
 ## 📌 Como funciona? 
 - Cada jogador recebe uma carta com três atributos: **Força, Velocidade e Inteligência**.
-- O jogador escolhe um tributo para competir.
+- O jogador escolhe um atributo para competir.
 - O jogador com o maior valor no atributo escolhido vence a rodada.
 - Em caso de empate, ninguém vence.
 - O jogo continua até que todas as cartas sejam jogadas.
@@ -12,11 +12,10 @@ Este é um jogo baseado no clássico Super Trunfo, desenvolvido em Python.
 ## 🚀 Como executar o jogo
 1. Certifique-se de ter o Python instalado na sua máquina.
 2. Opcionalmente, crie um ambiente virtual com:
- ```sh
- python -m venv venv 
- source venv/bin/activate # No Windows:
- venv\Scripts\activate 
- ```
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # No Windows: venv\Scripts\activate
+   ```
 3. Baixe ou clone este repositório.
 4. No terminal, navegue até a pasta do projeto e execute:
    ```sh
@@ -36,7 +35,7 @@ class Carta:
             "Inteligência": inteligencia
         }
 
-def __str__(self):
+    def __str__(self):
         return f"{self.nome} - Força: {self.atributos['Força']}, Velocidade: {self.atributos['Velocidade']}, Inteligência: {self.atributos['Inteligência']}"
 
 class JogoSuperTrunfo:
@@ -45,37 +44,64 @@ class JogoSuperTrunfo:
             Carta("Dragão", 90, 60, 80),
             Carta("Cavaleiro", 70, 80, 60),
             Carta("Mago", 50, 40, 100),
-            Carta("Gigante", 100, 30, 50)
+            Carta("Gigante", 100, 30, 50),
+            Carta("Elfo", 60, 90, 70),
+            Carta("Orc", 80, 50, 40)
         ]
         random.shuffle(self.baralho)
     
+    def escolher_atributo(self):
+        print("
+Escolha um atributo para competir (Força, Velocidade, Inteligência): ")
+        return input().capitalize()
+
     def jogar(self):
-        carta1 = self.baralho.pop()
-        carta2 = self.baralho.pop()
-        
-        print("Carta do Jogador 1:")
-        print(carta1)
-        
-        print("\nEscolha um atributo para competir (Força, Velocidade, Inteligência): ")
-        atributo = input().capitalize()
-        
-        if atributo in carta1.atributos:
-            print("\nCarta do Jogador 2:")
-            print(carta2)
+        while len(self.baralho) > 1:
+            carta1 = self.baralho.pop()
+            carta2 = self.baralho.pop()
             
-            valor1 = carta1.atributos[atributo]
-            valor2 = carta2.atributos[atributo]
+            print("
+Carta do Jogador 1:")
+            print(carta1)
+
+            atributo = self.escolher_atributo()
             
-            if valor1 > valor2:
-                print("\nJogador 1 venceu!")
-            elif valor1 < valor2:
-                print("\nJogador 2 venceu!")
+            if atributo in carta1.atributos:
+                print("
+Carta do Jogador 2:")
+                print(carta2)
+                
+                valor1 = carta1.atributos[atributo]
+                valor2 = carta2.atributos[atributo]
+                
+                if valor1 > valor2:
+                    print("
+Jogador 1 venceu!")
+                elif valor1 < valor2:
+                    print("
+Jogador 2 venceu!")
+                else:
+                    print("
+Empate!")
             else:
-                print("\nEmpate!")
-        else:
-            print("\nAtributo inválido!")
+                print("
+Atributo inválido!")
 
 if __name__ == "__main__":
     jogo = JogoSuperTrunfo()
     jogo.jogar()
+```
+
+## 📌 Exemplo de Saída
+```
+Carta do Jogador 1:
+Dragão - Força: 90, Velocidade: 60, Inteligência: 80
+
+Escolha um atributo para competir (Força, Velocidade, Inteligência):
+Força
+
+Carta do Jogador 2:
+Mago - Força: 50, Velocidade: 40, Inteligência: 100
+
+Jogador 1 venceu!
 ```
